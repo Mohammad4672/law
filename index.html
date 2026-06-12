@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قضية الشعب ضد رُبى</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Tahoma",sans-serif;
+}
+body{
+background:linear-gradient(135deg,#1c1208,#3d2815,#5a3b1f);
+color:white;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+.screen{
+display:none;
+width:90%;
+max-width:800px;
+background:rgba(0,0,0,0.55);
+padding:35px;
+border-radius:25px;
+border:2px solid #d4af37;
+box-shadow:0 0 30px rgba(212,175,55,.4);
+animation:fade .8s;
+}
+.screen.active{
+display:block;
+}
+h1{
+color:#f4d06f;
+margin-bottom:20px;
+}
+p{
+font-size:1.2rem;
+line-height:2;
+}
+button{
+padding:14px 28px;
+margin:10px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+font-size:1.1rem;
+font-weight:bold;
+background:#d4af37;
+color:#1a1207;
+transition:.3s;
+}
+button:hover{
+transform:scale(1.08);
+}
+.evidence{
+background:rgba(255,255,255,.08);
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+border-right:5px solid #d4af37;
+}
+#reject{
+color:#ff7a7a;
+margin-top:15px;
+display:none;
+font-weight:bold;
+}
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.hammer{
+font-size:120px;
+animation:swing .6s infinite alternate;
+}
+@keyframes swing{
+from{
+transform:rotate(-20deg);
+}
+to{
+transform:rotate(20deg);
+}
+}
+.shake{
+animation:shake .4s;
+}
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-10px);}
+50%{transform:translateX(10px);}
+75%{transform:translateX(-10px);}
+100%{transform:translateX(0);}
+}
+.verdict{
+font-size:2rem;
+color:#f4d06f;
+margin-top:20px;
+}
+.small{
+margin-top:20px;
+font-size:1.1rem;
+color:#ddd;
+}
+</style>
+</head>
+<body>
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<audio id="gavel">
+<source src="gavel.mp3" type="audio/mpeg">
+</audio>
+<!-- شاشة البداية -->
+<div class="screen active" id="start">
+<h1>⚖️ قضية الشعب ضد رُبى ⚖️</h1>
+<p>
+اليوم تُفتَح جلسة استثنائية للنظر في قضية خطيرة...
+هل تستحق رُبى أن تصبح محامية ناجحة؟
+</p>
+<br>
+<button onclick="startCourt()">بدء الجلسة</button>
+</div>
+<!-- الأدلة -->
+<div class="screen" id="court">
+<h1>عرض الأدلة</h1>
+<div class="evidence">
+📚 الدليل الأول: اجتهاد متواصل رغم التعب.
+</div>
+<div class="evidence">
+📝 الدليل الثاني: نجاحات متكررة في الامتحانات.
+</div>
+<div class="evidence">
+⚖️ الدليل الثالث: شخصية قوية تناسب عالم القانون.
+</div>
+<div class="evidence">
+🌟 الدليل الرابع: إصرار يجعل المستحيل ممكنًا.
+</div>
+<br>
+<button onclick="goQuestion()">تقديم الاستنتاج</button>
+</div>
+<!-- السؤال -->
+<div class="screen" id="question">
+<h1>استجواب الشاهد</h1>
+<p>
+بعد مراجعة جميع الأدلة...
+هل توافق أن رُبى تستحق أن تصبح محامية ناجحة؟
+</p>
+<br>
+<button onclick="yesAnswer()">أكيد نعم</button>
+<button onclick="noAnswer()">لا</button>
+<div id="reject">
+❌ اعتراض مرفوض! المحكمة لا تقبل هذه الإجابة.
+</div>
+</div>
+<!-- القاضي -->
+<div class="screen" id="judge">
+<h1>القاضي يتداول بالحكم...</h1>
+<div class="hammer">🔨</div>
+<p class="small">
+يرجى الانتظار بينما تتم مراجعة الأدلة...
+</p>
+</div>
+<!-- الحكم -->
+<div class="screen" id="verdict">
+<h1>الحكم النهائي</h1>
+<div class="verdict">
+⚖️ باسم الشعب والمحكمة العليا ⚖️
+</div>
+<p style="margin-top:20px;">
+بعد دراسة الأدلة والاستماع للشهود...
+ثبت بما لا يدع مجالاً للشك أن:
+</p>
+<h1 style="margin-top:20px;">
+🎓 رُبى مذنبة بالنجاح والتفوّق 🎓
+</h1>
+<p>
+وتُحكم عليها بمستقبل مليء بالإنجازات القانونية
+وأن تصبح محامية ناجحة بإذن الله.
+</p>
+<br>
+<button onclick="finalScreen()">تنفيذ الحكم</button>
+</div>
+<!-- النهاية -->
+<div class="screen" id="final">
+<h1>🏆 مبروك يا رُبى 🏆</h1>
+<p>
+تم تنفيذ الحكم بنجاح.
+</p>
+<p>
+المحكمة تعلن رسميًا:
+</p>
+<h1>
+⚖️ المحامية رُبى ⚖️
+</h1>
+<p>
+النجاح لم يعد احتمالاً...
+بل أصبح قرارًا قضائيًا نهائيًا غير قابل للاستئناف.
+</p>
+</div>
+<script>
+const music=document.getElementById("music");
+const gavel=document.getElementById("gavel");
+function show(id){
+document.querySelectorAll(".screen").forEach(s=>{
+s.classList.remove("active");
+});
+document.getElementById(id).classList.add("active");
+}
+function startCourt(){
+music.volume=0.5;
+music.play().catch(()=>{});
+show("court");
+}
+function goQuestion(){
+show("question");
+}
+function noAnswer(){
+document.getElementById("reject").style.display="block";
+}
+function yesAnswer(){
+gavel.currentTime=0;
+gavel.play();
+show("judge");
+setTimeout(()=>{
+show("verdict");
+},3000);
+}
+function finalScreen(){
+gavel.currentTime=0;
+gavel.play();
+document.body.classList.add("shake");
+setTimeout(()=>{
+document.body.classList.remove("shake");
+show("final");
+},1000);
+}
+</script>
+</body>
+</html>
